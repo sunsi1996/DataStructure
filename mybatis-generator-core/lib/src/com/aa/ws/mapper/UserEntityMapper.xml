@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.aa.ws.mapper.UserEntityMapper" >
+  <resultMap id="BaseResultMap" type="com.aa.ws.entity.UserEntity" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="sheetId" property="sheetid" jdbcType="VARCHAR" />
+    <result column="process_status" property="processStatus" jdbcType="VARCHAR" />
+    <result column="tdr" property="tdr" jdbcType="VARCHAR" />
+    <result column="process_start_time" property="processStartTime" jdbcType="VARCHAR" />
+    <result column="product_name" property="productName" jdbcType="VARCHAR" />
+    <result column="product_price" property="productPrice" jdbcType="DECIMAL" />
+    <result column="purchase_number" property="purchaseNumber" jdbcType="VARCHAR" />
+    <result column="actual_amount" property="actualAmount" jdbcType="DECIMAL" />
+    <result column="payment" property="payment" jdbcType="VARCHAR" />
+    <result column="payment_method" property="paymentMethod" jdbcType="VARCHAR" />
+    <result column="order_number" property="orderNumber" jdbcType="VARCHAR" />
+    <result column="created_time" property="createdTime" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="VARCHAR" />
+    <result column="fp_status" property="fpStatus" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.aa.ws.entity.UserEntity" extends="BaseResultMap" >
+    <result column="title" property="title" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, sheetId, process_status, tdr, process_start_time, product_name, product_price, 
+    purchase_number, actual_amount, payment, payment_method, order_number, created_time, 
+    update_time, fp_status
+  </sql>
+  <sql id="Blob_Column_List" >
+    title
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from gd_fp
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from gd_fp
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.aa.ws.entity.UserEntity" >
+    insert into gd_fp (id, sheetId, process_status, 
+      tdr, process_start_time, product_name, 
+      product_price, purchase_number, actual_amount, 
+      payment, payment_method, order_number, 
+      created_time, update_time, fp_status, 
+      title)
+    values (#{id,jdbcType=BIGINT}, #{sheetid,jdbcType=VARCHAR}, #{processStatus,jdbcType=VARCHAR}, 
+      #{tdr,jdbcType=VARCHAR}, #{processStartTime,jdbcType=VARCHAR}, #{productName,jdbcType=VARCHAR}, 
+      #{productPrice,jdbcType=DECIMAL}, #{purchaseNumber,jdbcType=VARCHAR}, #{actualAmount,jdbcType=DECIMAL}, 
+      #{payment,jdbcType=VARCHAR}, #{paymentMethod,jdbcType=VARCHAR}, #{orderNumber,jdbcType=VARCHAR}, 
+      #{createdTime,jdbcType=VARCHAR}, #{updateTime,jdbcType=VARCHAR}, #{fpStatus,jdbcType=VARCHAR}, 
+      #{title,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.aa.ws.entity.UserEntity" >
+    insert into gd_fp
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="sheetid != null" >
+        sheetId,
+      </if>
+      <if test="processStatus != null" >
+        process_status,
+      </if>
+      <if test="tdr != null" >
+        tdr,
+      </if>
+      <if test="processStartTime != null" >
+        process_start_time,
+      </if>
+      <if test="productName != null" >
+        product_name,
+      </if>
+      <if test="productPrice != null" >
+        product_price,
+      </if>
+      <if test="purchaseNumber != null" >
+        purchase_number,
+      </if>
+      <if test="actualAmount != null" >
+        actual_amount,
+      </if>
+      <if test="payment != null" >
+        payment,
+      </if>
+      <if test="paymentMethod != null" >
+        payment_method,
+      </if>
+      <if test="orderNumber != null" >
+        order_number,
+      </if>
+      <if test="createdTime != null" >
+        created_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="fpStatus != null" >
+        fp_status,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="sheetid != null" >
+        #{sheetid,jdbcType=VARCHAR},
+      </if>
+      <if test="processStatus != null" >
+        #{processStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="tdr != null" >
+        #{tdr,jdbcType=VARCHAR},
+      </if>
+      <if test="processStartTime != null" >
+        #{processStartTime,jdbcType=VARCHAR},
+      </if>
+      <if test="productName != null" >
+        #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="productPrice != null" >
+        #{productPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="purchaseNumber != null" >
+        #{purchaseNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="actualAmount != null" >
+        #{actualAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="payment != null" >
+        #{payment,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentMethod != null" >
+        #{paymentMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNumber != null" >
+        #{orderNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        #{createdTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="fpStatus != null" >
+        #{fpStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aa.ws.entity.UserEntity" >
+    update gd_fp
+    <set >
+      <if test="sheetid != null" >
+        sheetId = #{sheetid,jdbcType=VARCHAR},
+      </if>
+      <if test="processStatus != null" >
+        process_status = #{processStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="tdr != null" >
+        tdr = #{tdr,jdbcType=VARCHAR},
+      </if>
+      <if test="processStartTime != null" >
+        process_start_time = #{processStartTime,jdbcType=VARCHAR},
+      </if>
+      <if test="productName != null" >
+        product_name = #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="productPrice != null" >
+        product_price = #{productPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="purchaseNumber != null" >
+        purchase_number = #{purchaseNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="actualAmount != null" >
+        actual_amount = #{actualAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="payment != null" >
+        payment = #{payment,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentMethod != null" >
+        payment_method = #{paymentMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNumber != null" >
+        order_number = #{orderNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        created_time = #{createdTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="fpStatus != null" >
+        fp_status = #{fpStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.aa.ws.entity.UserEntity" >
+    update gd_fp
+    set sheetId = #{sheetid,jdbcType=VARCHAR},
+      process_status = #{processStatus,jdbcType=VARCHAR},
+      tdr = #{tdr,jdbcType=VARCHAR},
+      process_start_time = #{processStartTime,jdbcType=VARCHAR},
+      product_name = #{productName,jdbcType=VARCHAR},
+      product_price = #{productPrice,jdbcType=DECIMAL},
+      purchase_number = #{purchaseNumber,jdbcType=VARCHAR},
+      actual_amount = #{actualAmount,jdbcType=DECIMAL},
+      payment = #{payment,jdbcType=VARCHAR},
+      payment_method = #{paymentMethod,jdbcType=VARCHAR},
+      order_number = #{orderNumber,jdbcType=VARCHAR},
+      created_time = #{createdTime,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=VARCHAR},
+      fp_status = #{fpStatus,jdbcType=VARCHAR},
+      title = #{title,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aa.ws.entity.UserEntity" >
+    update gd_fp
+    set sheetId = #{sheetid,jdbcType=VARCHAR},
+      process_status = #{processStatus,jdbcType=VARCHAR},
+      tdr = #{tdr,jdbcType=VARCHAR},
+      process_start_time = #{processStartTime,jdbcType=VARCHAR},
+      product_name = #{productName,jdbcType=VARCHAR},
+      product_price = #{productPrice,jdbcType=DECIMAL},
+      purchase_number = #{purchaseNumber,jdbcType=VARCHAR},
+      actual_amount = #{actualAmount,jdbcType=DECIMAL},
+      payment = #{payment,jdbcType=VARCHAR},
+      payment_method = #{paymentMethod,jdbcType=VARCHAR},
+      order_number = #{orderNumber,jdbcType=VARCHAR},
+      created_time = #{createdTime,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=VARCHAR},
+      fp_status = #{fpStatus,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -61,5 +61,18 @@ public class chaper01 {
         }
 
         //将稀疏数组转二位数组
+        int[][]  chessArry= new int[xishu[0][0]][xishu[0][1]];
+        for (int i = 1; i < xishu.length; i++) {
+           chessArry[xishu[i][0]][xishu[i][1]] = xishu[i][2];
+        }
+
+        System.out.println();
+        System.out.println("稀疏数组还原二位数组:");
+        for (int[] chessDatum : chessArry) {
+            for (int i : chessDatum) {
+                System.out.printf("%d\t", i);
+            }
+            System.out.println();
+        }
     }
   }
